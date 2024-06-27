@@ -1,1 +1,19 @@
-Hoje eu preciso trabalhar!
+{
+  "todos": [
+    {
+      "date": "2024-06-27T21:34:48.210Z",
+      "content": "Primeira TODO",
+      "done": false
+    },
+    {
+      "date": "2024-06-27T21:34:48.211Z",
+      "content": "Segunda TODO",
+      "done": false
+    },
+    {
+      "date": "2024-06-27T21:34:48.211Z",
+      "content": "Terceira TODO",
+      "done": false
+    }
+  ]
+}
