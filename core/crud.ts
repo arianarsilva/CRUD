@@ -46,12 +46,13 @@ function read(): Array<Todo> {
   return db.todos;
 }
 
-function update(id: string, partialTodo: Partial<Todo>) {
+function update(id: string, partialTodo: Partial<Todo>): Todo {
+    let updatedTodo;
   const todos = read();
   todos.forEach((currentTodo) => {
     const isToUpdate = currentTodo.id === id;
     if (isToUpdate) {
-      Object.assign(currentTodo, partialTodo);
+        updatedTodo = Object.assign(currentTodo, partialTodo);
     }
   });
 
@@ -65,6 +66,18 @@ function update(id: string, partialTodo: Partial<Todo>) {
       2
     )
   );
+
+  if(!updatedTodo) {
+    throw new Error("Please, provide another ID!")
+  }
+
+  return updatedTodo;
+}
+
+function updateContentById(id: string, content: string): Todo {
+    return update(id, {
+        content,
+    })
 }
 
 function CLEAR_DB() {
@@ -76,7 +89,9 @@ CLEAR_DB();
 create("Primeira TODO");
 create("Primeira TODO");
 const terceiraTodo = create("Segunda TODO");
-update(terceiraTodo.id, {
-  content: "Segunda TODO com novo content",
-});
+// update(terceiraTodo.id, {
+//   content: "Atualizada!",
+//   done: true,
+// });
+updateContentById(terceiraTodo.id, "Atualizada!") 
 console.log(read());
